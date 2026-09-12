@@ -1,0 +1,3 @@
+import Link from 'next/link';
+import Login from '@/components/login';
+export default function Page(){return <div className="login-layout"><section className="login-story"><div className="wordmark">FREIGHT<span>SKILLS</span></div><p className="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p><h1>Know the freight.<br/>Do the work.<br/><em>Build your business.</em></h1><p>Practical training for brokers and agents, built around the decisions you make every day.</p><div className="login-bottom">LEARN / PRACTICE / BUILD</div></section><section className="login-form"><Login/><p className="muted">Public enrollment and payments will open after the course is ready.</p><Link href="https://freightskills.com">Back to Freight Skills ↗</Link></section></div>}

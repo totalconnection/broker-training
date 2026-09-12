@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.env*
+!.env.example
+.local/
+coverage/
+*.tsbuildinfo
+playwright-results/
+private-media.json
+
+# Optional workflow kept local until GitHub workflow permission is enabled.
+.github/workflows/check.yml

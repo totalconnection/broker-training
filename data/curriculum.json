@@ -1,0 +1,669 @@
+{
+  "status_definitions": {
+    "NEW": "Record a new teaching unit; source IDs are optional background only.",
+    "REVISE": "Existing source is a starting point; update content or demos before publication.",
+    "REUSE": "Candidate to excerpt and chapter after accuracy/privacy review, not publication clearance."
+  },
+  "modules": [
+    {
+      "id": "0",
+      "title": "Start here",
+      "role": "Both",
+      "outcome": "Create a personal learning plan and finish one intake exercise.",
+      "lessons": [
+        {
+          "id": "0.1",
+          "title": "Welcome, your path, and your first 30 days",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Choose role, stage, and first goal.",
+          "production": "Record the promise, navigation, milestones, and realistic first-month expectations.",
+          "target_minutes": 8
+        },
+        {
+          "id": "0.2",
+          "title": "How to use Lewis GPT and check its work",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Correct an AI draft that invents shipment facts.",
+          "production": "Demonstrate Ask, Practice, Review, source links, missing facts, and saving a draft.",
+          "target_minutes": 8
+        },
+        {
+          "id": "0.3",
+          "title": "Follow one shipment from request to payment",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Arrange the shipment milestones.",
+          "production": "Introduce fictional Northstar Packaging and carry this case through the course.",
+          "target_minutes": 8
+        }
+      ]
+    },
+    {
+      "id": "A",
+      "title": "Agent readiness",
+      "role": "Agent",
+      "outcome": "Complete a host-brokerage evaluation and approval map.",
+      "lessons": [
+        {
+          "id": "A.1",
+          "title": "Choose and evaluate a host brokerage",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Compare two fictional host offers.",
+          "production": "Use a scorecard covering support, tools, customer ownership questions, and operating fit.",
+          "target_minutes": 8
+        },
+        {
+          "id": "A.2",
+          "title": "Understand your split and payment timing",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Calculate a sample commission and list deductions.",
+          "production": "Record commission bases, deductions, payment timing, and two worked host-offer examples.",
+          "target_minutes": 10
+        },
+        {
+          "id": "A.3",
+          "title": "Know what you can approve and when to escalate",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Complete a host-responsibility checklist.",
+          "production": "Demonstrate credit, carrier, claims, pricing, and technology approval questions.",
+          "target_minutes": 8
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Brokerage owner readiness",
+      "role": "Owner",
+      "outcome": "Complete a launch checklist and operating responsibility map.",
+      "lessons": [
+        {
+          "id": "B.1",
+          "title": "Build your launch-readiness checklist",
+          "status": "REVISE",
+          "sources": [
+            "C003"
+          ],
+          "assignment": "Identify incomplete setup tasks and owners.",
+          "production": "Verify current requirements and record a corrected setup walkthrough before release.",
+          "target_minutes": 10
+        },
+        {
+          "id": "B.2",
+          "title": "Insurance, contracts, and operating responsibilities",
+          "status": "REVISE",
+          "sources": [
+            "C004",
+            "C014"
+          ],
+          "assignment": "Map responsibilities and questions for service providers.",
+          "production": "Review current coverage and contract explanations; remove blanket statements.",
+          "target_minutes": 10
+        },
+        {
+          "id": "B.3",
+          "title": "Cash flow, customer credit, and payment controls",
+          "status": "NEW",
+          "sources": [
+            "C005"
+          ],
+          "assignment": "Build a fictional cash-timing and approval plan.",
+          "production": "Show a complete payment timeline, credit approval, exposure limits, and exceptions.",
+          "target_minutes": 8
+        },
+        {
+          "id": "B.4",
+          "title": "Choose the minimum operating setup",
+          "status": "REVISE",
+          "sources": [
+            "C012"
+          ],
+          "assignment": "Choose required systems and assign owners.",
+          "production": "Refresh tool demos; distinguish CRM, TMS, accounting, email, and course tools.",
+          "target_minutes": 10
+        }
+      ]
+    },
+    {
+      "id": "1",
+      "title": "Understand the freight",
+      "role": "Both",
+      "outcome": "Save a mode-aware shipment intake checklist.",
+      "lessons": [
+        {
+          "id": "1.1",
+          "title": "Dry van: information that changes the job",
+          "status": "REUSE",
+          "sources": [
+            "C006"
+          ],
+          "assignment": "Identify equipment and service facts.",
+          "production": "Extract the strongest foundation chapter; check capacities and examples.",
+          "target_minutes": 10
+        },
+        {
+          "id": "1.2",
+          "title": "Recognize LTL, flatbed, drayage, and special requirements",
+          "status": "REVISE",
+          "sources": [
+            "C007",
+            "C008",
+            "C009",
+            "C010"
+          ],
+          "assignment": "Match requests to a mode and escalation need.",
+          "production": "Create a concise edited overview; specialized execution lives in optional labs.",
+          "target_minutes": 10
+        },
+        {
+          "id": "1.3",
+          "title": "Read the documents in a shipment",
+          "status": "REUSE",
+          "sources": [
+            "C013"
+          ],
+          "assignment": "Match tender, confirmation, BOL, POD, and invoice.",
+          "production": "Pair selected footage with an anonymized document packet.",
+          "target_minutes": 10
+        },
+        {
+          "id": "1.4",
+          "title": "Ask the right questions before committing",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Write a clarification email for Northstar.",
+          "production": "Demonstrate commodity, dimensions, timing, equipment, accessorials, and unknowns.",
+          "target_minutes": 8
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "Build your daily system",
+      "role": "Both",
+      "outcome": "Save a routine, pipeline stages, and file structure.",
+      "lessons": [
+        {
+          "id": "2.1",
+          "title": "A complete broker workday",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Create a daily schedule for your stage.",
+          "production": "Screen-record a day moving between sales, quotes, active loads, and exceptions.",
+          "target_minutes": 8
+        },
+        {
+          "id": "2.2",
+          "title": "Set up a simple prospect and quote pipeline",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Build stages and required next-action fields.",
+          "production": "Demonstrate one supported CRM or sample workspace from empty to usable.",
+          "target_minutes": 8
+        },
+        {
+          "id": "2.3",
+          "title": "Organize contacts, documents, and handoffs",
+          "status": "NEW",
+          "sources": [
+            "C012",
+            "C026"
+          ],
+          "assignment": "Complete a folder and responsibility map.",
+          "production": "Show naming, load identifiers, templates, access, and who owns each next step.",
+          "target_minutes": 8
+        },
+        {
+          "id": "2.4",
+          "title": "Run a weekly performance review",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Save an activity dashboard and next-week priorities.",
+          "production": "Record a weekly review using sample activity, quote outcomes, execution quality, and next actions.",
+          "target_minutes": 10
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "Find suitable shippers",
+      "role": "Both",
+      "outcome": "Produce a verified five-company prospect worksheet.",
+      "lessons": [
+        {
+          "id": "3.1",
+          "title": "Pick a useful starting niche",
+          "status": "REVISE",
+          "sources": [
+            "C015"
+          ],
+          "assignment": "Define a customer profile and exclusions.",
+          "production": "Revise C015 with a new niche-selection example; remove unsupported market-size claims.",
+          "target_minutes": 10
+        },
+        {
+          "id": "3.2",
+          "title": "Find and qualify five real prospect examples",
+          "status": "NEW",
+          "sources": [
+            "C017"
+          ],
+          "assignment": "Research five companies and explain fit.",
+          "production": "Record current sources, qualification choices, and why two prospects are rejected.",
+          "target_minutes": 8
+        },
+        {
+          "id": "3.3",
+          "title": "Find the right contact and verify the facts",
+          "status": "REVISE",
+          "sources": [
+            "C018"
+          ],
+          "assignment": "Attach source links and contact-confidence notes.",
+          "production": "Refresh research tools; separate public facts from assumed freight needs.",
+          "target_minutes": 10
+        },
+        {
+          "id": "3.4",
+          "title": "Use AI to prepare a relevant approach",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Turn verified research into a concise call brief.",
+          "production": "Show input facts, AI assistance, fact checks, and an edited opener.",
+          "target_minutes": 8
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Start useful sales conversations",
+      "role": "Both",
+      "outcome": "Save outreach messages and a follow-up schedule.",
+      "lessons": [
+        {
+          "id": "4.1",
+          "title": "Understand the sales cycle and your value",
+          "status": "REVISE",
+          "sources": [
+            "C015"
+          ],
+          "assignment": "Write a specific service-value statement.",
+          "production": "Use C015 to explain acquisition principles; add a sales-cycle diagram and specific value example.",
+          "target_minutes": 10
+        },
+        {
+          "id": "4.2",
+          "title": "Prepare and open a first call",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Practice a gatekeeper and decision-maker call.",
+          "production": "Record an annotated first call from preparation to gatekeeper, decision-maker, and agreed next step.",
+          "target_minutes": 10
+        },
+        {
+          "id": "4.3",
+          "title": "Discover the reason behind an objection",
+          "status": "REVISE",
+          "sources": [
+            "C019"
+          ],
+          "assignment": "Replay an objection after feedback.",
+          "production": "Use C019 contact scenarios and add an objection debrief and practice rubric.",
+          "target_minutes": 10
+        },
+        {
+          "id": "4.4",
+          "title": "Use email and LinkedIn together",
+          "status": "REVISE",
+          "sources": [
+            "C016",
+            "C030",
+            "C032"
+          ],
+          "assignment": "Draft a profile improvement and outreach pair.",
+          "production": "Merge overlapping material and refresh interface demonstrations.",
+          "target_minutes": 10
+        },
+        {
+          "id": "4.5",
+          "title": "From first conversation to quote request",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Build a follow-up plan for a fictional account.",
+          "production": "Show several complete exchanges, next actions, and the handoff into intake.",
+          "target_minutes": 8
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "Quote with confidence",
+      "role": "Both",
+      "outcome": "Complete a supported quote package for Northstar.",
+      "lessons": [
+        {
+          "id": "5.1",
+          "title": "Predict carrier cost using evidence",
+          "status": "REVISE",
+          "sources": [
+            "C024",
+            "C025",
+            "C033"
+          ],
+          "assignment": "Compare supplied rate evidence and uncertainty.",
+          "production": "Chapter the Quote Masterclass and replace dated tool demonstrations.",
+          "target_minutes": 10
+        },
+        {
+          "id": "5.2",
+          "title": "Margin, markup, and all-in cost",
+          "status": "REVISE",
+          "sources": [
+            "C033"
+          ],
+          "assignment": "Calculate price and explain margin versus markup.",
+          "production": "Correct ambiguous language; use a deterministic calculator and worked examples.",
+          "target_minutes": 10
+        },
+        {
+          "id": "5.3",
+          "title": "Build a complete quote and explain assumptions",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Prepare intake, costs, validity, exclusions, and message.",
+          "production": "Record one full quote with an incomplete request and subsequent clarification.",
+          "target_minutes": 8
+        },
+        {
+          "id": "5.4",
+          "title": "Handle negotiation, spot work, and RFQs",
+          "status": "REUSE",
+          "sources": [
+            "C033"
+          ],
+          "assignment": "Respond to a price objection and an RFQ request.",
+          "production": "Select chapters; label scenario assumptions and source dates.",
+          "target_minutes": 10
+        },
+        {
+          "id": "5.5",
+          "title": "Practice lab: fix the weak quote",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Submit a corrected quote and explain three decisions.",
+          "production": "Short briefing and debrief; show errors in equipment, cost assumptions, and wording.",
+          "target_minutes": 8
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Cover and execute the shipment",
+      "role": "Both",
+      "outcome": "Save a carrier and shipment execution checklist.",
+      "lessons": [
+        {
+          "id": "6.1",
+          "title": "Verify carrier information and spot mismatches",
+          "status": "REVISE",
+          "sources": [
+            "C020"
+          ],
+          "assignment": "Resolve an identity mismatch using an approval policy.",
+          "production": "Update checks with current reviewed procedures; show an agent escalation variant.",
+          "target_minutes": 10
+        },
+        {
+          "id": "6.2",
+          "title": "Source capacity and pitch the load",
+          "status": "REVISE",
+          "sources": [
+            "C021",
+            "C022",
+            "C023"
+          ],
+          "assignment": "Prepare a load posting and carrier conversation.",
+          "production": "Retain negotiation principles; refresh load-board screens and supplied facts.",
+          "target_minutes": 10
+        },
+        {
+          "id": "6.3",
+          "title": "Confirm the order and manage milestones",
+          "status": "REUSE",
+          "sources": [
+            "C026"
+          ],
+          "assignment": "Build a confirmation and milestone record.",
+          "production": "Use selected instruction and a new fictional shipment packet.",
+          "target_minutes": 10
+        },
+        {
+          "id": "6.4",
+          "title": "Close out the load and make it invoice-ready",
+          "status": "NEW",
+          "sources": [
+            "C013"
+          ],
+          "assignment": "Find missing closeout evidence and route a dispute.",
+          "production": "Demonstrate document checks, charge approval, and agent/owner handoffs.",
+          "target_minutes": 8
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Handle difficult situations",
+      "role": "Both",
+      "outcome": "Save communication and exception response templates.",
+      "lessons": [
+        {
+          "id": "7.1",
+          "title": "Communicate a delay while recovery is underway",
+          "status": "REVISE",
+          "sources": [
+            "C029"
+          ],
+          "assignment": "Draft a fact-based update and next-update time.",
+          "production": "Clarify older solution-first advice; demonstrate prompt material updates.",
+          "target_minutes": 10
+        },
+        {
+          "id": "7.2",
+          "title": "Collect facts and escalate a freight claim",
+          "status": "REVISE",
+          "sources": [
+            "C028"
+          ],
+          "assignment": "Complete a claim-intake and responsibility worksheet.",
+          "production": "Use anonymized cases; review process and avoid coverage or liability guarantees.",
+          "target_minutes": 10
+        },
+        {
+          "id": "7.3",
+          "title": "Work through a shipment going wrong",
+          "status": "REVISE",
+          "sources": [
+            "C029"
+          ],
+          "assignment": "Choose next actions and defend the sequence.",
+          "production": "Use C029 communication scenarios as a case foundation; add missing case facts and a role-specific debrief.",
+          "target_minutes": 10
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Improve your book and your business",
+      "role": "Both",
+      "outcome": "Produce a next-30-days plan from actual or sample activity.",
+      "lessons": [
+        {
+          "id": "8.1",
+          "title": "Grow relationships inside existing accounts",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Create an account expansion plan.",
+          "production": "Record an account review identifying service gaps, decision-makers, expansion questions, and follow-up.",
+          "target_minutes": 10
+        },
+        {
+          "id": "8.2",
+          "title": "Identify the bottleneck before adding tools or people",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Choose one process improvement from a sample week.",
+          "production": "Record a bottleneck diagnosis using workload, errors, economics, and process ownership.",
+          "target_minutes": 10
+        },
+        {
+          "id": "8.3",
+          "title": "Use AI to review your week and plan the next one",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Compare an AI summary with source data and save priorities.",
+          "production": "Show a bounded weekly review with verified inputs and human decisions.",
+          "target_minutes": 8
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Final working simulation",
+      "role": "Both",
+      "outcome": "Complete a connected customer-to-closeout case.",
+      "lessons": [
+        {
+          "id": "9.1",
+          "title": "Run the Northstar shipment case",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Submit research, quote, carrier decision, update, and closeout.",
+          "production": "Record a concise case briefing; build the case data and role policies.",
+          "target_minutes": 8
+        },
+        {
+          "id": "9.2",
+          "title": "Review your decisions and activate your playbook",
+          "status": "NEW",
+          "sources": [],
+          "assignment": "Correct weak decisions and export your playbook.",
+          "production": "Record a worked debrief and next-30-days adoption plan.",
+          "target_minutes": 8
+        }
+      ]
+    },
+    {
+      "id": "S",
+      "title": "Optional specialization labs",
+      "role": "Optional",
+      "outcome": "Complete one relevant deep dive after core mode awareness.",
+      "lessons": [
+        {
+          "id": "S.1",
+          "title": "Drayage and intermodal lifecycle",
+          "status": "REUSE",
+          "sources": [
+            "C001",
+            "C002",
+            "C010"
+          ],
+          "assignment": "Map container parties and milestones.",
+          "production": "Consolidate overlap into chapters and verify terminology.",
+          "target_minutes": 10
+        },
+        {
+          "id": "S.2",
+          "title": "Drayage quoting and documentation",
+          "status": "REVISE",
+          "sources": [
+            "C011",
+            "C031"
+          ],
+          "assignment": "Build a scenario-specific intake and charge checklist.",
+          "production": "Refresh examples, accessorial handling, and time-sensitive procedures.",
+          "target_minutes": 10
+        },
+        {
+          "id": "S.3",
+          "title": "Drayage exceptions and case review",
+          "status": "REUSE",
+          "sources": [
+            "C002",
+            "C031"
+          ],
+          "assignment": "Resolve a container-move scenario.",
+          "production": "Select nonduplicative cases; append an updated debrief where required.",
+          "target_minutes": 10
+        },
+        {
+          "id": "S.4",
+          "title": "LTL shipment preparation and intake",
+          "status": "REVISE",
+          "sources": [
+            "C007",
+            "C027"
+          ],
+          "assignment": "Complete dimensions, packaging, commodity, and service inputs.",
+          "production": "Review current classification references and remove oversimplifications.",
+          "target_minutes": 10
+        },
+        {
+          "id": "S.5",
+          "title": "LTL quote review and charge disputes",
+          "status": "REVISE",
+          "sources": [
+            "C027"
+          ],
+          "assignment": "Check a supplied quote against a shipment profile.",
+          "production": "Create a current example packet and a reviewed reclassification discussion.",
+          "target_minutes": 10
+        },
+        {
+          "id": "S.6",
+          "title": "LinkedIn profile workshop",
+          "status": "REVISE",
+          "sources": [
+            "C016",
+            "C032"
+          ],
+          "assignment": "Complete a profile and positioning checklist.",
+          "production": "Use masterclass chapters with current screen inserts.",
+          "target_minutes": 10
+        },
+        {
+          "id": "S.7",
+          "title": "LinkedIn outreach workshop",
+          "status": "REVISE",
+          "sources": [
+            "C030",
+            "C032"
+          ],
+          "assignment": "Practice a relevant message and follow-up.",
+          "production": "Remove repeated foundation teaching; keep deeper examples.",
+          "target_minutes": 10
+        },
+        {
+          "id": "S.8",
+          "title": "Flatbed and special-freight awareness",
+          "status": "REVISE",
+          "sources": [
+            "C008",
+            "C009"
+          ],
+          "assignment": "Recognize requirements needing specialist help.",
+          "production": "Refresh boundaries and examples; this is awareness, not independent qualification.",
+          "target_minutes": 10
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "NEW": 24,
+    "REVISE": 22,
+    "REUSE": 6
+  }
+}
