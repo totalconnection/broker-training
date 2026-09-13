@@ -8,3 +8,6 @@ test('unrelated questions retrieve no student source',{skip:!sources.length},()=
 test('budget rejects concurrent requests, exhausted allowances, and overspending',()=>{assert.doesNotThrow(()=>checkAllowance(0,0,0,RESERVATION_MICROS,false));assert.throws(()=>checkAllowance(100,0,0,100000,false));assert.throws(()=>checkAllowance(0,10,0,100000,false));assert.throws(()=>checkAllowance(0,0,1,RESERVATION_MICROS,false));assert.throws(()=>checkAllowance(0,0,0,100000,true))});
 
 test("retrieval ranks relevant teaching and excludes unrelated chunks",()=>{const docs=[{id:"test",title:"Existing brokers",text:"If a shipper already has brokers, ask which freight modes those providers handle. Explore LTL if relevant.",kind:"test",url:null,approved:true}];assert.equal(retrieve("shipper already has brokers",docs)[0].id,"test");assert.equal(retrieve("bake chocolate cake",docs).length,0)});
+
+import {checkedAnswer} from '../lib/gpt-prompt';
+test('unverified historical lane-experience scripts are not displayed',()=>{assert(!checkedAnswer('Say: I have never run this lane before.').includes('Say:'));assert.equal(checkedAnswer('Ask what rate works for this load.'),'Ask what rate works for this load.')});
