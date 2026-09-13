@@ -1,7 +1,7 @@
 import {redirect} from 'next/navigation';
-import {readFile} from 'node:fs/promises';
 import {member} from '@/lib/access';
-import {listItems,publications} from '@/lib/store';
-import Portal from '@/components/portal';
+import {listItems} from '@/lib/store';
+import {getCourse,studentCourse} from '@/lib/teaching';
+import TeachingPortal from '@/components/teaching-portal';
 export const dynamic='force-dynamic';
-export default async function Page(){const m=await member();if(!m)redirect('/login');if(!m.enrolled)return <main className="setup"><h1>Your learning workspace is almost ready.</h1><p>Enrollment and checkout will be connected before launch. Your account does not yet have course access.</p><a href="/login">Back to sign in</a></main>;let media={};if(m.demo&&m.admin){try{media=JSON.parse(await readFile('private-media.json','utf8'))}catch{}}return <Portal member={m} initialItems={await listItems(m)} initialPublications={(await publications(m)).filter(p=>m.admin||p.published)} media={media} skool={process.env.SKOOL_URL||'https://www.skool.com/freightskills-community-5835'}/>}
+export default async function Page(){const m=await member();if(!m)redirect('/login');const course=await getCourse(m);if(!m.enrolled)return <main className="setup"><h1>Your Freight Skills account</h1><p>You do not have active course access yet.</p>{course.settings.checkoutUrl?<a className="button" href={course.settings.checkoutUrl}>Enroll in the program</a>:<p>Enrollment will open when checkout is connected.</p>}<a href="/login">Back to sign in</a></main>;return <TeachingPortal member={m} initialCourse={m.admin?course:studentCourse(course,m.role)} initialItems={await listItems(m)}/>}

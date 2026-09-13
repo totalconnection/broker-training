@@ -1,0 +1,597 @@
+{
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "Getting started",
+      "description": "Set up your workspace and understand the job.",
+      "audience": "all",
+      "lessons": [
+        {
+          "id": "course-1-1",
+          "title": "How to use this program",
+          "summary": "Learn how to navigate your course, download lesson PDFs, ask Freightskills GPT questions, and join the community on Skool.",
+          "action": "Open the course outline and choose your first learning session.",
+          "minutes": 10,
+          "recording": "new",
+          "source": "",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-1-2",
+          "title": "What shippers pay a freight broker to do",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C015",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-1-3",
+          "title": "The basic tools you need to get started",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C012",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        }
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "Understanding freight",
+      "description": "Understand the shipment before you sell the service.",
+      "audience": "all",
+      "lessons": [
+        {
+          "id": "course-2-1",
+          "title": "How a shipment moves from order to delivery",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C026",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-2-2",
+          "title": "Understanding dry van freight",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C006",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-2-3",
+          "title": "Understanding LTL freight",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C007",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-2-4",
+          "title": "Understanding flatbed freight",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C008",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        }
+      ]
+    },
+    {
+      "id": "section-3",
+      "title": "Finding shippers and starting conversations",
+      "description": "Build a small list, reach out, and schedule your next action.",
+      "audience": "all",
+      "lessons": [
+        {
+          "id": "course-3-1",
+          "title": "Find companies worth contacting",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "new",
+          "source": "C017",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-3-2",
+          "title": "Find the right contact",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "new",
+          "source": "C018",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-3-3",
+          "title": "Start the conversation: phone, email, and LinkedIn",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "new",
+          "source": "C019",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-3-4",
+          "title": "Handle responses and follow up",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "new",
+          "source": "C019",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        }
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "Pricing and quoting freight",
+      "description": "Turn a shipment request into a clear, supported quote.",
+      "audience": "all",
+      "lessons": [
+        {
+          "id": "course-4-1",
+          "title": "Gather the information you need to quote",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C024",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-4-2",
+          "title": "Research carrier costs and price the shipment",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C024",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-4-3",
+          "title": "Build and send a dry van quote",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C025",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-4-4",
+          "title": "Worked quote examples",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C033",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        }
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "Finding and booking carriers",
+      "description": "Find capacity and follow a professional booking process.",
+      "audience": "all",
+      "lessons": [
+        {
+          "id": "course-5-1",
+          "title": "Use load boards to find carriers",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C021",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-5-2",
+          "title": "Create an effective load posting",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C023",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-5-3",
+          "title": "Pitch the load and discuss the rate",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C022",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-5-4",
+          "title": "Qualify and onboard the carrier",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C020",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-5-5",
+          "title": "Understand co-brokering and double brokering",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C014",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        }
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "Managing the shipment",
+      "description": "Manage the load from acceptance through the billing handoff.",
+      "audience": "all",
+      "lessons": [
+        {
+          "id": "course-6-1",
+          "title": "Set up the order after the customer accepts",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C026",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-6-2",
+          "title": "Understand rate confirmations, BOLs, and delivery paperwork",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C013",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-6-3",
+          "title": "Manage pickup, transit, and delivery",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C026",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-6-4",
+          "title": "Communicate with customers and carriers",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C029",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-6-5",
+          "title": "Handle problems and freight claims",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C028",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-6-6",
+          "title": "Complete the paperwork and billing handoff",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C013",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        }
+      ]
+    },
+    {
+      "id": "section-7",
+      "title": "Building repeat business",
+      "description": "Earn the next shipment and establish a consistent routine.",
+      "audience": "all",
+      "lessons": [
+        {
+          "id": "course-7-1",
+          "title": "Follow up after delivery and ask for the next shipment",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C026",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-7-2",
+          "title": "Expand your business with existing customers",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C019",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-7-3",
+          "title": "Organize your prospecting and follow-up routine",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C019",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        }
+      ]
+    },
+    {
+      "id": "section-8",
+      "title": "Brokerage owner setup",
+      "description": "Additional setup training for brokerage owners.",
+      "audience": "owner",
+      "lessons": [
+        {
+          "id": "course-8-1",
+          "title": "Licensing and regulations",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C003",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-8-2",
+          "title": "Insurance for freight brokers",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C004",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-8-3",
+          "title": "Startup funding, working capital, and factoring",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C005",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        }
+      ]
+    },
+    {
+      "id": "section-9",
+      "title": "Specialty and advanced training",
+      "description": "Optional workshops to explore when the work calls for them.",
+      "audience": "optional",
+      "lessons": [
+        {
+          "id": "course-9-1",
+          "title": "Optimizing your LinkedIn profile",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C016",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-9-2",
+          "title": "LinkedIn outreach and profile growth",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C030",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-9-3",
+          "title": "LinkedIn masterclass",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C032",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-9-4",
+          "title": "LTL freight deep dive",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C027",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-9-5",
+          "title": "Hazmat freight introduction",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C009",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-9-6",
+          "title": "Container and intermodal freight",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C001",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-9-7",
+          "title": "Introduction to container drayage",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C010",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-9-8",
+          "title": "Container drayage quoting and documentation",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C011",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-9-9",
+          "title": "Drayage masterclass",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C002",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-9-10",
+          "title": "Container drayage mastery",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C031",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "course-9-11",
+          "title": "Freight quoting masterclass",
+          "summary": "",
+          "action": "",
+          "minutes": 10,
+          "recording": "existing",
+          "source": "C033",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "gptUrl": "",
+    "skoolUrl": "https://www.skool.com/freightskills-community-5835",
+    "checkoutUrl": ""
+  }
+}
