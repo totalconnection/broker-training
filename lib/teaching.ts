@@ -4,7 +4,7 @@ import {courseSchema,studentCourse,completedIds,type Course} from './teaching-sc
 import type {Member} from './access';
 import {database} from './db';
 const contentMember=(m:Member)=>({...m,id:'teaching-content'});
-export async function getCourse(m:Member):Promise<Course>{const saved=(await listItems(contentMember(m),'teaching_course'))[0];return courseSchema.parse(saved?.data??seed)}
+export async function getCourse(m:Member):Promise<Course>{const saved=(await listItems(contentMember(m),'teaching_course'))[0];const data=structuredClone(saved?.data??seed) as unknown as Course;if(!data.sections.some(s=>s.id==='section-agent'))data.sections.splice(1,0,structuredClone(seed.sections.find(s=>s.id==='section-agent')!) as Course['sections'][number]);for(const section of data.sections)for(const lesson of section.lessons){const original=courseSchema.parse(seed).sections.flatMap(s=>s.lessons).find(l=>l.id===lesson.id);if(original){lesson.agentNote??=original.agentNote;lesson.ownerNote??=original.ownerNote}}return courseSchema.parse(data)}
 export async function saveCourse(m:Member,course:Course){if(!m.admin)throw Error('FORBIDDEN');const current=(await listItems(contentMember(m),'teaching_course'))[0];await saveItem(contentMember(m),'teaching_course',course,current?.id)}
 export type Student={id:string;name:string;email:string;role:string;active:boolean;completed:string[];lastActive:string|null};
 export async function roster(m:Member):Promise<Student[]>{if(!m.admin)throw Error('FORBIDDEN');if(m.demo){const items=await listItems(m);return [{id:m.id,name:'Local preview account',email:m.email,role:m.role,active:true,completed:completedIds(items),lastActive:items.filter(i=>i.kind==='lesson_progress').map(i=>i.updated_at).sort().at(-1)??null}]}

@@ -45,6 +45,50 @@
       ]
     },
     {
+      "id": "section-agent",
+      "title": "Get started as an agent",
+      "description": "Choose the right brokerage and get ready to work within its systems.",
+      "audience": "agent",
+      "lessons": [
+        {
+          "id": "agent-1",
+          "title": "How the agent\u2013brokerage relationship works",
+          "summary": "Understand responsibilities, commissions, and the support you should expect from your brokerage.",
+          "action": "Write down which responsibilities are yours and which belong to your brokerage.",
+          "minutes": 8,
+          "recording": "new",
+          "source": "New agent setup recording",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "agent-2",
+          "title": "How to evaluate a brokerage before joining",
+          "summary": "Compare support, commission terms, systems, and operating expectations.",
+          "action": "Use these questions to evaluate a potential brokerage partner.",
+          "minutes": 8,
+          "recording": "new",
+          "source": "New agent setup recording",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        },
+        {
+          "id": "agent-3",
+          "title": "Get ready to work under your brokerage",
+          "summary": "Confirm access to the tools, contacts, and approval processes you need before working a shipment.",
+          "action": "Confirm your system access and who approves customers, pricing, and carriers.",
+          "minutes": 8,
+          "recording": "new",
+          "source": "New agent setup recording",
+          "vimeo": "",
+          "pdfKey": "",
+          "published": false
+        }
+      ]
+    },
+    {
       "id": "section-2",
       "title": "Understanding freight",
       "description": "Understand the shipment before you sell the service.",
@@ -116,7 +160,9 @@
           "source": "C017",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Represent the capabilities and service commitments your brokerage actually supports.",
+          "ownerNote": "Define the capabilities and service commitments your team can consistently deliver."
         },
         {
           "id": "course-3-2",
@@ -128,7 +174,9 @@
           "source": "C018",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Represent the capabilities and service commitments your brokerage actually supports.",
+          "ownerNote": "Define the capabilities and service commitments your team can consistently deliver."
         },
         {
           "id": "course-3-3",
@@ -140,7 +188,9 @@
           "source": "C019",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Represent the capabilities and service commitments your brokerage actually supports.",
+          "ownerNote": "Define the capabilities and service commitments your team can consistently deliver."
         },
         {
           "id": "course-3-4",
@@ -152,7 +202,9 @@
           "source": "C019",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Represent the capabilities and service commitments your brokerage actually supports.",
+          "ownerNote": "Define the capabilities and service commitments your team can consistently deliver."
         }
       ]
     },
@@ -172,7 +224,9 @@
           "source": "C024",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Confirm your brokerage\u2019s margin requirements and pricing approval process before committing.",
+          "ownerNote": "Set clear margin requirements and pricing approval rules for your operation."
         },
         {
           "id": "course-4-2",
@@ -184,7 +238,9 @@
           "source": "C024",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Confirm your brokerage\u2019s margin requirements and pricing approval process before committing.",
+          "ownerNote": "Set clear margin requirements and pricing approval rules for your operation."
         },
         {
           "id": "course-4-3",
@@ -196,7 +252,9 @@
           "source": "C025",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Confirm your brokerage\u2019s margin requirements and pricing approval process before committing.",
+          "ownerNote": "Set clear margin requirements and pricing approval rules for your operation."
         },
         {
           "id": "course-4-4",
@@ -208,7 +266,9 @@
           "source": "C033",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Confirm your brokerage\u2019s margin requirements and pricing approval process before committing.",
+          "ownerNote": "Set clear margin requirements and pricing approval rules for your operation."
         }
       ]
     },
@@ -228,7 +288,9 @@
           "source": "C021",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Follow your brokerage\u2019s carrier approval process before booking a carrier.",
+          "ownerNote": "Make sure your operation has a clear carrier verification and approval process."
         },
         {
           "id": "course-5-2",
@@ -240,7 +302,9 @@
           "source": "C023",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Follow your brokerage\u2019s carrier approval process before booking a carrier.",
+          "ownerNote": "Make sure your operation has a clear carrier verification and approval process."
         },
         {
           "id": "course-5-3",
@@ -252,7 +316,9 @@
           "source": "C022",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Follow your brokerage\u2019s carrier approval process before booking a carrier.",
+          "ownerNote": "Make sure your operation has a clear carrier verification and approval process."
         },
         {
           "id": "course-5-4",
@@ -264,7 +330,9 @@
           "source": "C020",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Follow your brokerage\u2019s carrier approval process before booking a carrier.",
+          "ownerNote": "Make sure your operation has a clear carrier verification and approval process."
         },
         {
           "id": "course-5-5",
@@ -276,7 +344,9 @@
           "source": "C014",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Follow your brokerage\u2019s carrier approval process before booking a carrier.",
+          "ownerNote": "Make sure your operation has a clear carrier verification and approval process."
         }
       ]
     },
@@ -296,7 +366,9 @@
           "source": "C026",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Use your brokerage\u2019s shipment procedures and escalation contact when an issue arises.",
+          "ownerNote": "Set clear shipment procedures and escalation responsibilities for your team."
         },
         {
           "id": "course-6-2",
@@ -308,7 +380,9 @@
           "source": "C013",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Use your brokerage\u2019s shipment procedures and escalation contact when an issue arises.",
+          "ownerNote": "Set clear shipment procedures and escalation responsibilities for your team."
         },
         {
           "id": "course-6-3",
@@ -320,7 +394,9 @@
           "source": "C026",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Use your brokerage\u2019s shipment procedures and escalation contact when an issue arises.",
+          "ownerNote": "Set clear shipment procedures and escalation responsibilities for your team."
         },
         {
           "id": "course-6-4",
@@ -332,7 +408,9 @@
           "source": "C029",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Use your brokerage\u2019s shipment procedures and escalation contact when an issue arises.",
+          "ownerNote": "Set clear shipment procedures and escalation responsibilities for your team."
         },
         {
           "id": "course-6-5",
@@ -344,7 +422,9 @@
           "source": "C028",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Use your brokerage\u2019s shipment procedures and escalation contact when an issue arises.",
+          "ownerNote": "Set clear shipment procedures and escalation responsibilities for your team."
         },
         {
           "id": "course-6-6",
@@ -356,7 +436,9 @@
           "source": "C013",
           "vimeo": "",
           "pdfKey": "",
-          "published": false
+          "published": false,
+          "agentNote": "Use your brokerage\u2019s shipment procedures and escalation contact when an issue arises.",
+          "ownerNote": "Set clear shipment procedures and escalation responsibilities for your team."
         }
       ]
     },
