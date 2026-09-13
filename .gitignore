@@ -10,3 +10,6 @@ private-media.json
 
 # Optional workflow kept local until GitHub workflow permission is enabled.
 .github/workflows/check.yml
+
+# Private teaching library is stored in Railway object storage.
+data/knowledge/
