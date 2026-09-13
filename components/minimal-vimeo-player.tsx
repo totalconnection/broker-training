@@ -20,7 +20,7 @@ export default function MinimalVimeoPlayer({src,title}:Props){
   return()=>{mounted=false;player.current=null;instance.off('play',onPlay);instance.off('pause',onPause);instance.off('ended',onPause);instance.off('volumechange',onVolume);instance.off('playbackratechange',onRate);void instance.destroy().catch(()=>{})};
  },[playerSrc]);
 
- async function toggle(){const instance=player.current;if(!instance)return;try{if(await instance.getPaused())await instance.play();else await instance.pause()}catch{}}
+ async function toggle(){const instance=player.current;if(!instance)return;try{if(playing)await instance.pause();else await instance.play()}catch{}}
  async function setVolume(value:number){const instance=player.current;if(!instance)return;try{await instance.setVolume(value);setVolumeState(value);if(value>0)lastVolume.current=value}catch{}}
  async function setSpeed(value:number){const instance=player.current;if(!instance)return;try{await instance.setPlaybackRate(value);setSpeedState(value)}catch{}}
 
