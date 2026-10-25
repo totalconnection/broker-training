@@ -1,5 +1,16 @@
 import {courseSchema,type Course} from './teaching-schema';
 export const libraryImportId='vimeo-masterclasses-2026-09';
+export async function loadCourseLibrary(course:Course,load:()=>Promise<Course|null>):Promise<Course>{
+ // Once imported, the saved course is authoritative. Do not make every visit
+ // depend on object storage for a library that has already been incorporated.
+ if(course.contentImports?.includes(libraryImportId))return course;
+ try{const library=await load();return library?mergeCourseLibrary(course,library):course}
+ catch(error){
+  // Keep signed-in access to existing teaching and tools if optional storage fails.
+  console.error('Optional course library unavailable',{name:error instanceof Error?error.name:'UnknownError'});
+  return {...course,libraryUnavailable:true};
+ }
+}
 export function mergeCourseLibrary(course:Course,library:Course):Course{
  if(course.contentImports?.includes(libraryImportId))return course;
  const result=structuredClone(course);

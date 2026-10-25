@@ -1,6 +1,8 @@
-# Freight Skills · course portal shell
+# Freight Skills Portal
 
-A working build preview for organizing recordings and designing the student experience. This is not a launched paid course. Stripe, live Lewis AI, automatic YouTube ingestion, and premium coaching delivery are intentionally deferred.
+The member portal now separates products: `/app` lists available products, `/academy` opens Academy, and `/workshops/quote` opens the Quote Workshop. See [PRODUCT-FOUNDATION.md](PRODUCT-FOUNDATION.md) for access, content reuse, and payment-integration boundaries. Stripe checkout and sales/onboarding funnels remain a later phase.
+
+The original shell notes below describe earlier implementation stages; use the product foundation document for the new portal structure.
 
 ## Open locally
 

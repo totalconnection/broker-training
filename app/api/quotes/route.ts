@@ -18,7 +18,7 @@ function failure(error:unknown) {
 }
 export async function GET(request:Request) {
   try {
-    const member=await requireMember();
+    const member=await requireMember('quote-workshop');
     const id=new URL(request.url).searchParams.get('id');
     if(id){z.uuid().parse(id);const quote=await loadQuote(member,id);if(!quote)throw Error('QUOTE_NOT_FOUND');return NextResponse.json({quote},{headers});}
     const quotes=(await listItems(member,QUOTE_KIND)).map(item=>{const {snapshot:_,...summary}=item.data as QuoteRecord;return {...summary,id:item.id};});
@@ -29,7 +29,7 @@ export async function GET(request:Request) {
 export async function POST(request:Request) {
   try {
     await checkOrigin();
-    const member=await requireMember();
+    const member=await requireMember('quote-workshop');
     if(Number(request.headers.get('content-length')||0)>2_800_000)throw Error('Quote is too large. Use a smaller logo.');
     const raw=await request.text();
     if(Buffer.byteLength(raw)>2_800_000)throw Error('Quote is too large. Use a smaller logo.');

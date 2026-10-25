@@ -13,7 +13,7 @@ const {loadQuote,saveQuoteRecord,updateQuoteStatus}=await import('../lib/quotes'
 process.chdir(original);
 after(()=>rm(temporary,{recursive:true,force:true}));
 test('saved quotes and status updates are isolated to the owning member',async()=>{
-  const member:Member={id:'quote-test-a',name:'A',email:'a@example.test',role:'owner',plan:'core',admin:false,demo:true,enrolled:true};
+  const member:Member={id:'quote-test-a',name:'A',email:'a@example.test',role:'owner',plan:'core',admin:false,demo:true,enrolled:true,products:['quote-workshop']};
   const other={...member,id:'quote-test-b'};
   const record={id:randomUUID(),reference:'QA-ONLY',createdAt:new Date().toISOString(),mode:'LTL',lane:'A to B',customer:'Example',buy:100,sell:120,markup:20,status:'Open',snapshot:{}} as QuoteRecord;
   await saveQuoteRecord(member,record);

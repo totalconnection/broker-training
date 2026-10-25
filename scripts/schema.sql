@@ -7,3 +7,12 @@ CREATE TABLE IF NOT EXISTS orders(checkout_id text PRIMARY KEY,user_id text NOT 
 CREATE TABLE IF NOT EXISTS owner_setup_claims(token_hash text PRIMARY KEY,user_id text NOT NULL,claimed_at timestamptz NOT NULL DEFAULT now());
 CREATE TABLE IF NOT EXISTS ai_requests(id uuid PRIMARY KEY,user_id text NOT NULL,reserved_micros bigint NOT NULL,status text NOT NULL,actual_micros bigint,created_at timestamptz NOT NULL DEFAULT now());
 CREATE INDEX IF NOT EXISTS ai_requests_usage ON ai_requests(created_at,user_id);
+CREATE TABLE IF NOT EXISTS product_enrollments(
+ user_id text NOT NULL,
+ product_id text NOT NULL CHECK(product_id IN ('academy','quote-workshop')),
+ expires_at timestamptz NOT NULL,
+ revoked_at timestamptz,
+ source text NOT NULL DEFAULT 'manual',
+ updated_at timestamptz NOT NULL DEFAULT now(),
+ PRIMARY KEY(user_id,product_id)
+);
