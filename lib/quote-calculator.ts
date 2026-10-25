@@ -11,6 +11,7 @@ export const defaultForm = {
   origin:'',destination:'',pickup:'',delivery:'',equipment:'Dry Van',commodity:'',weight:'',
   pieces:'',dimensions:'',freightClass:'',reference:'',notes:'',miles:'',hazmat:false,
   temperature:'',port:'',customer:'',company:'',contact:'',validDays:'7',
+  moveType:'',containerNumber:'',unloadType:'',lastFreeDay:'',emptyReturnLocation:'',emptyReturnDate:'',
   disclaimer:'Rates are subject to equipment availability and final shipment details. Additional accessorial charges may apply.',
 };
 const short = z.string().max(500);
@@ -20,6 +21,8 @@ export const formSchema = z.object({
   notes:z.string().max(5000),miles:short,hazmat:z.boolean(),temperature:short,port:short,
   customer:short,company:short,contact:short,validDays:z.string().refine(v=>Number.isInteger(Number(v))&&Number(v)>=1&&Number(v)<=365,'Use 1–365 validity days.'),
   disclaimer:z.string().max(5000),
+  moveType:short.default(''),containerNumber:short.default(''),unloadType:short.default(''),
+  lastFreeDay:short.default(''),emptyReturnLocation:short.default(''),emptyReturnDate:short.default(''),
 });
 export const logoSchema = z.string().max(2_700_000).refine(v=>!v||/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(v),'Use a PNG, JPEG, or WebP logo.');
 export const snapshotSchema = z.object({mode:modeSchema,form:formSchema,rates:z.object({Truckload:z.array(rateSchema).length(3),LTL:z.array(rateSchema).length(3),Drayage:z.array(rateSchema).length(3)}),markup:z.number().finite().min(0).max(1000),logo:logoSchema});

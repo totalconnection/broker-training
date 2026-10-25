@@ -2,7 +2,7 @@ import {NextResponse} from 'next/server';
 import {z} from 'zod';
 import {requireAdmin,requireMember,checkOrigin} from '@/lib/access';
 import {getCourse,saveCourse,roster} from '@/lib/teaching';
-import {courseForMember} from '@/lib/quote-workshop';
+import {courseForMember} from '@/lib/workshop-access';
 import {courseSchema} from '@/lib/teaching-schema';
 import {listItems,saveItem} from '@/lib/store';
 function error(e:unknown){const message=e instanceof Error?e.message:'Unable to save';return NextResponse.json({error:message},{status:message==='UNAUTHENTICATED'?401:message==='FORBIDDEN'||message==='ENROLLMENT_REQUIRED'?403:400})}

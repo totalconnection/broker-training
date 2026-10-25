@@ -1,13 +1,14 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {resolveProducts,hasProduct} from '../lib/products';
-import {quoteCourse,courseForMember,quoteLessonIds} from '../lib/quote-workshop';
+import {quoteCourse,quoteLessonIds} from '../lib/quote-workshop';
+import {courseForMember} from '../lib/workshop-access';
 import {courseSchema} from '../lib/teaching-schema';
 import seed from '../data/teaching-course.json';
 import {loadCourseLibrary,libraryImportId} from '../lib/course-library';
 const now=new Date('2026-10-25T12:00:00Z'),future='2027-10-25T12:00:00Z',past='2025-10-25T12:00:00Z';
-test('existing Academy members retain both products; expired access does not',()=>{
- assert.deepEqual(resolveProducts({expires_at:future},[],now),['academy','quote-workshop']);
+test('existing Academy members retain included workshops; expired access does not',()=>{
+ assert.deepEqual(resolveProducts({expires_at:future},[],now),['academy','quote-workshop','drayage-workshop']);
  assert.deepEqual(resolveProducts({expires_at:past},[],now),[]);
  assert.deepEqual(resolveProducts(undefined,[],now),[]);
 });
@@ -18,8 +19,8 @@ test('standalone workshop never grants Academy, and expired/revoked/unknown gran
 });
 test('independent valid workshop grant survives Academy expiry; new Academy grants include workshop',()=>{
  assert.deepEqual(resolveProducts({expires_at:past},[{product_id:'quote-workshop',expires_at:future}],now),['quote-workshop']);
- assert.deepEqual(resolveProducts(undefined,[{product_id:'academy',expires_at:future}],now),['academy','quote-workshop']);
- assert.deepEqual(resolveProducts({is_admin:true,expires_at:past},[],now),['academy','quote-workshop']);
+ assert.deepEqual(resolveProducts(undefined,[{product_id:'academy',expires_at:future}],now),['academy','quote-workshop','drayage-workshop']);
+ assert.deepEqual(resolveProducts({is_admin:true,expires_at:past},[],now),['academy','quote-workshop','drayage-workshop']);
 });
 test('workshop members receive only published quote lessons, resources, and no Academy connections',()=>{
  const course=courseSchema.parse(seed);

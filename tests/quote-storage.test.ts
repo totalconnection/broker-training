@@ -24,3 +24,16 @@ test('saved quotes and status updates are isolated to the owning member',async()
   await updateQuoteStatus(member,record.id,'Won');
   assert.equal((await loadQuote(member,record.id))?.status,'Won');
 });
+test('losing Quote access hides other freight modes and prevents unauthorized saves and status updates',async()=>{
+ const full:Member={id:'drayage-test-owner',name:'A',email:'a@example.test',role:'owner',plan:'core',admin:false,demo:true,enrolled:true,products:['quote-workshop']};
+ const drayage:Member={...full,products:['drayage-workshop']};
+ const make=(mode:QuoteRecord['mode'])=>({id:randomUUID(),reference:'QA-ONLY',createdAt:new Date().toISOString(),mode,lane:'A to B',customer:'Example',buy:100,sell:120,markup:20,status:'Open',snapshot:{}} as QuoteRecord);
+ const truck=make('Truckload'),container=make('Drayage');
+ await saveQuoteRecord(full,truck);await saveQuoteRecord(drayage,container);
+ assert.equal(await loadQuote(drayage,truck.id),null);
+ await assert.rejects(updateQuoteStatus(drayage,truck.id,'Won'),/QUOTE_NOT_FOUND/);
+ await assert.rejects(saveQuoteRecord(drayage,make('LTL')),/FORBIDDEN/);
+ assert.equal((await loadQuote(full,truck.id))?.status,'Open');
+ await updateQuoteStatus(drayage,container.id,'Won');assert.equal((await loadQuote(drayage,container.id))?.status,'Won');
+ assert.equal(await loadQuote({...drayage,id:'different-owner'},container.id),null);
+});

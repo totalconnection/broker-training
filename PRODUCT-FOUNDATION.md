@@ -34,3 +34,13 @@ Automated checks cover existing/expired enrollment, standalone grants, revoked/u
 ## Storage recovery, October 25, 2026
 
 The live service failed after sign-in because its copied S3 credentials had been invalidated by Railway. Service variables `S3_ACCESS_KEY_ID` and `S3_SECRET_ACCESS_KEY` were changed to references to the existing `lesson-pdfs` bucket. Keep these as references, not copied values. A saved, previously imported library no longer triggers another object-storage read on each visit. If the optional library cannot load before its first import, existing teaching and tools remain available and the UI shows a temporary availability notice. No stored lessons or files are removed.
+
+## Drayage Workshop
+
+`/workshops/drayage` is a separate product with workflow, lessons, calculator, and resources pages. Its stable entitlement is `drayage-workshop`; Academy includes it. A standalone purchase grants neither Academy nor Quote Workshop. Members with both workshops receive the union of their published lessons. Startup upgrades the existing product ID database constraint without replacing any grants.
+
+The hub references `course-9-7`, `course-9-6`, `course-9-8`, `course-9-9`, and `course-9-10`, in that order. The three existing published masterclasses are available; the introduction and quoting/documentation recordings retain their draft status. Media, attachments, and progress remain under their original IDs. Legacy lesson URLs redirect to the hub. Content Studio remains authoritative. Workshop action prompts supplement blank lesson descriptions without rewriting stored content.
+
+The drayage calculator starts and resets in Drayage mode, shows only drayage quotes in its tracker, and includes container/move details, deadlines, return instructions, carrier outreach drafts, and customer print output. Quotes and branding retain existing member-owned storage. API listing, loading, saving, and status changes enforce mode access: Drayage-only members can use only Drayage; existing Quote Workshop members retain all three modes. New fields default safely when opening older quotes. No live rate, terminal, or TMS feed is implied.
+
+The resources page includes a printable container move checklist available immediately to members, plus any PDFs attached to their published lessons. Draft attachments remain admin-only. No additional recordings are published automatically. Access can be managed with `npm run product:access -- grant member@example.com drayage-workshop 2027-10-25T23:59:59Z`.

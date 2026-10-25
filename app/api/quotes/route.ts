@@ -5,6 +5,7 @@ import {requireMember,checkOrigin} from '@/lib/access';
 import {listItems,saveItem} from '@/lib/store';
 import {buildQuote,snapshotSchema,statusSchema,logoSchema,type QuoteRecord} from '@/lib/quote-calculator';
 import {QUOTE_KIND,loadQuote,saveQuoteRecord,updateQuoteStatus} from '@/lib/quotes';
+import {allowedQuoteModes,canAccessQuote} from '@/lib/quote-access';
 const headers={'Cache-Control':'no-store'};
 const bodySchema=z.discriminatedUnion('action',[
   z.object({action:z.literal('save'),snapshot:snapshotSchema}),
@@ -18,10 +19,11 @@ function failure(error:unknown) {
 }
 export async function GET(request:Request) {
   try {
-    const member=await requireMember('quote-workshop');
+    const member=await requireMember('any');
+    if(!allowedQuoteModes(member).length)throw Error('FORBIDDEN');
     const id=new URL(request.url).searchParams.get('id');
     if(id){z.uuid().parse(id);const quote=await loadQuote(member,id);if(!quote)throw Error('QUOTE_NOT_FOUND');return NextResponse.json({quote},{headers});}
-    const quotes=(await listItems(member,QUOTE_KIND)).map(item=>{const {snapshot:_,...summary}=item.data as QuoteRecord;return {...summary,id:item.id};});
+    const quotes=(await listItems(member,QUOTE_KIND)).filter(item=>canAccessQuote(member,item.data.mode as QuoteRecord['mode'])).map(item=>{const {snapshot:_,...summary}=item.data as QuoteRecord;return {...summary,id:item.id};});
     const branding=(await listItems(member,'quote_branding'))[0];
     return NextResponse.json({quotes,logo:branding?.data.logo||''},{headers});
   }catch(error){return failure(error);}
@@ -29,7 +31,8 @@ export async function GET(request:Request) {
 export async function POST(request:Request) {
   try {
     await checkOrigin();
-    const member=await requireMember('quote-workshop');
+    const member=await requireMember('any');
+    if(!allowedQuoteModes(member).length)throw Error('FORBIDDEN');
     if(Number(request.headers.get('content-length')||0)>2_800_000)throw Error('Quote is too large. Use a smaller logo.');
     const raw=await request.text();
     if(Buffer.byteLength(raw)>2_800_000)throw Error('Quote is too large. Use a smaller logo.');

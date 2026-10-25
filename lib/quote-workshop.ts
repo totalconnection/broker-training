@@ -1,5 +1,4 @@
-import {studentCourse, type Course} from './teaching-schema';
-import {hasProduct, type ProductId} from './products';
+import type {Course} from './teaching-schema';
 
 // Reference the original lessons: media, resource edits, and completion stay shared.
 export const quoteLessonIds = ['course-4-1', 'course-4-2', 'course-4-3', 'course-4-4', 'course-9-11'] as const;
@@ -15,11 +14,5 @@ export function quoteCourse(course: Course): Course {
   const lessons = course.sections.flatMap(s => s.lessons);
   const selected = quoteLessonIds.flatMap(id => {const lesson = lessons.find(l => l.id === id); return lesson ? [lesson] : [];});
   return {...course, settings: {gptUrl: '', skoolUrl: '', checkoutUrl: ''}, sections: [{id: 'quote-workshop', title: 'Quote Workshop', description: 'From shipment request to customer quote.', audience: 'all', lessons: selected}]};
-}
-export function courseForMember(course: Course, member: {admin: boolean; role: string; products: ProductId[]}): Course {
-  if (member.admin) return course;
-  if (hasProduct(member, 'academy')) return studentCourse(course, member.role);
-  if (hasProduct(member, 'quote-workshop')) return studentCourse(quoteCourse(course), member.role);
-  return {...course, settings: {gptUrl: '', skoolUrl: '', checkoutUrl: ''}, sections: []};
 }
 export function quoteLessonHref(id: string) { return '/workshops/quote/lessons/' + encodeURIComponent(id); }

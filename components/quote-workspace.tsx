@@ -10,7 +10,7 @@ const base=(name:string,days=0):Rate=>({name,amount:0,fsc:0,chassis:0,days,acces
 const initialRates:Record<Mode,Rate[]>={
   Truckload:[base("DAT RateView"),base("Posted truck"),base("Carrier feedback")],
   LTL:[base("Carrier 1"),base("Carrier 2"),base("Carrier 3")],
-  Drayage:[base("Dray carrier 1",2),base("Dray carrier 2",2),base("Dray carrier 3",2)]
+  Drayage:[base("Dray carrier 1"),base("Dray carrier 2"),base("Dray carrier 3")]
 };
 const equipment:Record<Mode,string[]>={
   Truckload:["Dry Van","Reefer","Flatbed"],
@@ -18,9 +18,10 @@ const equipment:Record<Mode,string[]>={
   Drayage:["20 ft Container","40 ft Container","40 ft High Cube"]
 };
 
-export function QuoteWorkspace(){
+export function QuoteWorkspace({drayageOnly=false}:{drayageOnly?:boolean}={}){
+ const startMode:Mode=drayageOnly?'Drayage':'Truckload';
  const[view,setView]=useState<"calculator"|"tracker">("calculator");
- const[mode,setMode]=useState<Mode>("Truckload");
+ const[mode,setMode]=useState<Mode>(startMode);
  const[rates,setRates]=useState(initialRates);
  const[markup,setMarkup]=useState(15);
  const[custom,setCustom]=useState("");
@@ -28,12 +29,12 @@ export function QuoteWorkspace(){
  const[logo,setLogo]=useState("");
  const[message,setMessage]=useState("");
  const[scriptOpen,setScriptOpen]=useState<"call"|"email"|null>(null);
- const[form,setForm]=useState({...defaultForm});
+ const[form,setForm]=useState({...defaultForm,equipment:equipment[startMode][0]});
  const[busy,setBusy]=useState(false);
  const[loaded,setLoaded]=useState(false);
  const[autoReference,setAutoReference]=useState("");
  const saving=useRef(false);
- useEffect(()=>{setAutoReference("FSQ-"+new Date().getFullYear()+"-"+crypto.randomUUID().slice(0,8).toUpperCase());quoteRequest("GET").then(data=>{setQuotes(data.quotes);setLogo(data.logo);setLoaded(true)}).catch(error=>setMessage(error.message))},[]);
+ useEffect(()=>{setAutoReference("FSQ-"+new Date().getFullYear()+"-"+crypto.randomUUID().slice(0,8).toUpperCase());quoteRequest("GET").then(data=>{setQuotes((data.quotes as SavedQuote[]).filter(q=>!drayageOnly||q.mode==='Drayage'));setLogo(data.logo);setLoaded(true)}).catch(error=>setMessage(error.message))},[drayageOnly]);
  const update=(key:string,value:string|boolean)=>setForm(f=>({...f,[key]:value}));
  const modeRates=rates[mode];
  const activeMarkup=custom===""?markup:n(custom);
@@ -44,13 +45,19 @@ export function QuoteWorkspace(){
  const reference=form.reference||autoReference;
  const equipmentLabel=form.hazmat?`${form.equipment} / Hazmat`:form.equipment;
  const shipmentLine=`${form.origin||"[origin]"} to ${form.destination||"[destination]"}`;
- const callScript=useMemo(()=>`Hi, this is ${form.contact||"[your name]"} with ${form.company||"[company]"}. I am calling about an available ${equipmentLabel} truck.
+ const containerBrief=`Move: ${form.moveType||'[import, export, or domestic]'}\nContainer number: ${form.containerNumber||'[confirm]'}\nUnload: ${form.unloadType||'[live unload or drop]'}\nLast free day: ${form.lastFreeDay||'[confirm with responsible party]'}\nEmpty return: ${form.emptyReturnLocation||'[confirm location]'} by ${form.emptyReturnDate||'[confirm date]'}`;
+ const callScript=useMemo(()=>mode==='Drayage'?`Hi, this is ${form.contact||'[your name]'} with ${form.company||'[company]'}. Can you handle a ${equipmentLabel} move from ${form.port||form.origin||'[terminal or ramp]'} to ${form.destination||'[delivery]'} on ${form.pickup||'[pickup date]'}?
+
+${containerBrief}
+Cargo: ${form.commodity||'[commodity]'}, ${form.weight||'[gross weight]'} lbs.
+
+Please confirm facility access, capacity, chassis availability, release and appointment requirements. Break out linehaul, fuel basis, chassis billing days, included free time, and additional-charge triggers. Who will confirm the empty-return instructions?${form.notes?`\n\nMove notes: ${form.notes}`:''}`:`Hi, this is ${form.contact||"[your name]"} with ${form.company||"[company]"}. I am calling about an available ${equipmentLabel} truck.
 
 I have a load from ${form.origin||"[origin]"} to ${form.destination||"[destination]"}, picking up ${form.pickup||"[pickup date]"} and delivering ${form.delivery||"[delivery date]"}. It is ${form.commodity||"[commodity]"}, ${form.weight||"[weight]"} lbs${form.temperature?`, at ${form.temperature}`:""}.
 
 Are you interested and available? What all-in rate would you need? Please confirm your MC number, equipment, driver location, and any special requirements.${form.notes?`
 
-Load notes: ${form.notes}`:""}`,[form,equipmentLabel]);
+Load notes: ${form.notes}`:""}`,[form,equipmentLabel,mode,containerBrief]);
  const emailDraft=useMemo(()=>mode==="Drayage"?`Subject: Drayage quote request | ${shipmentLine}
 
 Hello,
@@ -62,6 +69,8 @@ Container: ${equipmentLabel}
 Pickup: ${form.pickup||"[date]"}
 Weight: ${form.weight||"[weight]"} lbs
 Commodity: ${form.commodity||"[commodity]"}
+${containerBrief}
+${form.notes?`Move notes: ${form.notes}`:''}
 
 Please break out linehaul, fuel surcharge, chassis per day and minimum days, pre-pull, detention, storage, hazmat, overweight, and other accessorials. Confirm free time and equipment availability.
 
@@ -87,7 +96,7 @@ Please confirm the rate, transit time, availability, and accessorials.
 
 Thank you,
 ${form.contact||"[your name]"}
-${form.company||"[company]"}`,[mode,form,equipmentLabel,shipmentLine]);
+${form.company||"[company]"}`,[mode,form,equipmentLabel,shipmentLine,containerBrief]);
  function changeMode(next:Mode){setMode(next);setForm(f=>({...f,equipment:equipment[next][0]}))}
  function updateRate(i:number,key:keyof Rate,value:string){setRates(all=>({...all,[mode]:all[mode].map((r,x)=>x===i?{...r,[key]:key==="name"?value:n(value)}:r)}))}
  async function saveQuote(){
@@ -105,9 +114,9 @@ ${form.company||"[company]"}`,[mode,form,equipmentLabel,shipmentLine]);
   setBusy(true);try{await quoteRequest("POST",{action:"status",id,status});setQuotes(previous=>previous.map(q=>q.id===id?{...q,status}:q))}catch(error){setMessage((error as Error).message)}finally{setBusy(false)}
  }
  async function openQuote(id:string){
-  setBusy(true);try{const data=await quoteRequest("GET",undefined,id);const quote=data.quote as QuoteRecord;setForm(quote.snapshot.form);setMode(quote.mode);setRates(quote.snapshot.rates);setLogo(quote.snapshot.logo);setMarkup(quote.markup);setCustom("");setView("calculator");setMessage("Opened "+quote.reference+". Saving changes creates another saved copy.");}catch(error){setMessage((error as Error).message)}finally{setBusy(false)}
+  setBusy(true);try{const data=await quoteRequest("GET",undefined,id);const quote=data.quote as QuoteRecord;if(drayageOnly&&quote.mode!=='Drayage')throw Error('Open this quote in Quote Workshop.');setForm({...defaultForm,...quote.snapshot.form});setMode(quote.mode);setRates(quote.snapshot.rates);setLogo(quote.snapshot.logo);setMarkup(quote.markup);setCustom("");setView("calculator");setMessage("Opened "+quote.reference+". Saving changes creates another saved copy.");}catch(error){setMessage((error as Error).message)}finally{setBusy(false)}
  }
- function newQuote(){setForm({...defaultForm,company:form.company,contact:form.contact});setMode("Truckload");setRates(structuredClone(initialRates));setMarkup(15);setCustom("");setAutoReference("FSQ-"+new Date().getFullYear()+"-"+crypto.randomUUID().slice(0,8).toUpperCase());setView("calculator");setScriptOpen(null);setMessage("")}
+ function newQuote(){setForm({...defaultForm,equipment:equipment[startMode][0],company:form.company,contact:form.contact});setMode(startMode);setRates(structuredClone(initialRates));setMarkup(15);setCustom("");setAutoReference("FSQ-"+new Date().getFullYear()+"-"+crypto.randomUUID().slice(0,8).toUpperCase());setView("calculator");setScriptOpen(null);setMessage("")}
  function uploadLogo(file?:File){
   if(!file)return;
   if(file.size>2_000_000||!["image/png","image/jpeg","image/webp"].includes(file.type)){setMessage("Use a PNG, JPEG, or WebP logo under 2 MB.");return}
@@ -122,7 +131,7 @@ ${form.company||"[company]"}`,[mode,form,equipmentLabel,shipmentLine]);
 
  return <div className="fq">
   {message&&<div className="quote-message" role="status">{message}<button aria-label="Dismiss" onClick={()=>setMessage("")}>×</button></div>}
-  <section className="intro"><p className="eyebrow">Freightskills field tool</p><h1>Freight Quote Calculator</h1><p>Research the buy rate, apply a markup, and turn it into a customer-ready quote.</p></section>
+  <section className="intro"><p className="eyebrow">Freightskills field tool</p><h1>{drayageOnly?'Drayage Quote Calculator':'Freight Quote Calculator'}</h1><p>{drayageOnly?'Compare linehaul, fuel, chassis, and known charges. Build a quote around the actual container move.':'Research the buy rate, apply a markup, and turn it into a customer-ready quote.'}</p></section>
   <nav className="tabs" aria-label="Quote tools"><button className={view==="calculator"?"active":""} onClick={()=>setView("calculator")}>Calculator</button><button className={view==="tracker"?"active":""} onClick={()=>setView("tracker")}>Quote Tracker <span>{quotes.length}</span></button><button onClick={newQuote} disabled={busy}>New quote</button></nav>
   {view==="tracker"?<section className="panel tracker">
    <div className="section-head"><div><p className="step">Saved work</p><h2>Quote Tracker</h2></div><p>Record the result when a customer decides.</p></div>
@@ -131,7 +140,7 @@ ${form.company||"[company]"}`,[mode,form,equipmentLabel,shipmentLine]);
    <div className="progress" aria-label="Quote workflow">{["Shipment","Research","Carrier outreach","Markup","Customer quote"].map((label,i)=><div key={label}><span>{i+1}</span>{label}</div>)}</div>
    <section className="panel">
     <div className="section-head"><div><p className="step">Step 1</p><h2>Shipment details</h2></div><p>Enter what the carrier needs to price the load.</p></div>
-    <div className="mode-tabs">{(["Truckload","LTL","Drayage"] as Mode[]).map(m=><button key={m} className={mode===m?"active":""} onClick={()=>changeMode(m)}>{m}<small>{m==="Truckload"?"Van, reefer, flatbed, hazmat":m==="LTL"?"Palletized and volume":"Port and rail containers"}</small></button>)}</div>
+    {!drayageOnly&&<div className="mode-tabs">{(["Truckload","LTL","Drayage"] as Mode[]).map(m=><button key={m} className={mode===m?"active":""} onClick={()=>changeMode(m)}>{m}<small>{m==="Truckload"?"Van, reefer, flatbed, hazmat":m==="LTL"?"Palletized and volume":"Port and rail containers"}</small></button>)}</div>}
     <div className="form-grid">
      <label>Origin<input value={form.origin} onChange={e=>update("origin",e.target.value)} placeholder={mode==="Drayage"?"Port, rail or city":"City, ST, ZIP"}/></label>
      <label>Destination<input value={form.destination} onChange={e=>update("destination",e.target.value)} placeholder="City, ST, ZIP"/></label>
@@ -142,7 +151,7 @@ ${form.company||"[company]"}`,[mode,form,equipmentLabel,shipmentLine]);
      <label>Commodity<input value={form.commodity} onChange={e=>update("commodity",e.target.value)} placeholder="What is shipping?"/></label>
      <label>Pieces / pallets<input value={form.pieces} onChange={e=>update("pieces",e.target.value)} placeholder="Quantity"/></label>
      {mode==="LTL"&&<><label>Dimensions<input value={form.dimensions} onChange={e=>update("dimensions",e.target.value)} placeholder="L × W × H"/></label><label>Freight class<input value={form.freightClass} onChange={e=>update("freightClass",e.target.value)} placeholder="Class or NMFC"/></label></>}
-     {mode==="Drayage"&&<label>Port / rail<input value={form.port} onChange={e=>update("port",e.target.value)} placeholder="Facility and terminal"/></label>}
+     {mode==="Drayage"&&<><label>Port / rail<input value={form.port} onChange={e=>update("port",e.target.value)} placeholder="Facility and terminal"/></label><label>Move type<select value={form.moveType} onChange={e=>update('moveType',e.target.value)}><option value="">Select move type</option><option>Import</option><option>Export</option><option>Domestic</option></select></label><label>Container number<input value={form.containerNumber} onChange={e=>update('containerNumber',e.target.value)} placeholder="Container reference"/></label><label>Unload arrangement<select value={form.unloadType} onChange={e=>update('unloadType',e.target.value)}><option value="">Confirm arrangement</option><option>Live unload / load</option><option>Drop and pick</option><option>Transload</option></select></label><label>Last free day<input type="date" value={form.lastFreeDay} onChange={e=>update('lastFreeDay',e.target.value)}/></label><label>Empty-return location<input value={form.emptyReturnLocation} onChange={e=>update('emptyReturnLocation',e.target.value)} placeholder="Confirm return facility"/></label><label>Empty-return deadline<input type="date" value={form.emptyReturnDate} onChange={e=>update('emptyReturnDate',e.target.value)}/></label></>}
      {mode==="Truckload"&&<><label>Miles<input type="number" value={form.miles} onChange={e=>update("miles",e.target.value)} placeholder="Loaded miles"/></label>{form.equipment==="Reefer"&&<label>Temperature<input value={form.temperature} onChange={e=>update("temperature",e.target.value)} placeholder="34°F continuous"/></label>}</>}
      <label className="wide">Special instructions<textarea value={form.notes} onChange={e=>update("notes",e.target.value)} placeholder="Appointments, handling, accessorials, or other requirements"/></label>
      {mode==="Truckload"&&<label className="check"><input type="checkbox" checked={form.hazmat} onChange={e=>update("hazmat",e.target.checked)}/> Hazmat shipment</label>}
@@ -156,7 +165,7 @@ ${form.company||"[company]"}`,[mode,form,equipmentLabel,shipmentLine]);
       <label>Linehaul<input type="number" value={rate.amount||""} min="0" step="0.01" onChange={e=>updateRate(i,"amount",e.target.value)}/></label>
       <label>FSC %<input type="number" value={rate.fsc||""} onChange={e=>updateRate(i,"fsc",e.target.value)}/></label>
       <label>Chassis / day<input type="number" value={rate.chassis||""} onChange={e=>updateRate(i,"chassis",e.target.value)}/></label>
-      <label>Min. days<input type="number" value={rate.days||""} onChange={e=>updateRate(i,"days",e.target.value)}/></label>
+      <label>Chassis billable days<input type="number" min="0" value={rate.days||""} onChange={e=>updateRate(i,"days",e.target.value)}/></label>
       <label className="wide">Known accessorials<input type="number" value={rate.accessorial||""} onChange={e=>updateRate(i,"accessorial",e.target.value)}/></label>
      </div>:<label>All-in carrier cost<input type="number" value={rate.amount||""} onChange={e=>updateRate(i,"amount",e.target.value)} placeholder="0.00"/></label>}
      <div className="rate-total"><span>Calculated cost</span><strong>{money(totals[i])}</strong></div>
@@ -198,6 +207,7 @@ ${form.company||"[company]"}`,[mode,form,equipmentLabel,shipmentLine]);
     <section><p>Prepared for</p><h2>{form.customer||"Customer"}</h2><small>Prepared by {form.contact||"Freight professional"}{form.company?` · ${form.company}`:""}</small></section>
     <div className="print-lane"><div><span>Origin</span><strong>{form.origin||"Not entered"}</strong></div><div><span>Destination</span><strong>{form.destination||"Not entered"}</strong></div></div>
     <dl><div><dt>Mode</dt><dd>{mode}</dd></div><div><dt>Equipment</dt><dd>{equipmentLabel}</dd></div><div><dt>Pickup</dt><dd>{form.pickup||"TBD"}</dd></div><div><dt>Delivery</dt><dd>{form.delivery||"TBD"}</dd></div><div><dt>Commodity</dt><dd>{form.commodity||"General freight"}</dd></div><div><dt>Weight</dt><dd>{form.weight?`${form.weight} lbs`:"TBD"}</dd></div></dl>
+    {mode==='Drayage'&&<dl>{[['Move type',form.moveType],['Container number',form.containerNumber],['Port / rail',form.port],['Unload arrangement',form.unloadType],['Last free day',form.lastFreeDay],['Empty-return location',form.emptyReturnLocation],['Empty-return deadline',form.emptyReturnDate]].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value||'To be confirmed'}</dd></div>)}</dl>}
     <div className="print-total"><span>Total quoted rate</span><strong>{money(sell)}</strong></div>
     {form.notes&&<p className="print-notes">{form.notes}</p>}<footer>This quote is valid for {form.validDays||7} days. {form.disclaimer}</footer>
    </article>

@@ -9,10 +9,14 @@ CREATE TABLE IF NOT EXISTS ai_requests(id uuid PRIMARY KEY,user_id text NOT NULL
 CREATE INDEX IF NOT EXISTS ai_requests_usage ON ai_requests(created_at,user_id);
 CREATE TABLE IF NOT EXISTS product_enrollments(
  user_id text NOT NULL,
- product_id text NOT NULL CHECK(product_id IN ('academy','quote-workshop')),
+ product_id text NOT NULL CHECK(product_id IN ('academy','quote-workshop','drayage-workshop')),
  expires_at timestamptz NOT NULL,
  revoked_at timestamptz,
  source text NOT NULL DEFAULT 'manual',
  updated_at timestamptz NOT NULL DEFAULT now(),
  PRIMARY KEY(user_id,product_id)
 );
+-- Upgrade the existing table as well as fresh installs. Existing grants stay intact.
+ALTER TABLE product_enrollments DROP CONSTRAINT IF EXISTS product_enrollments_product_id_check;
+ALTER TABLE product_enrollments ADD CONSTRAINT product_enrollments_product_id_check
+ CHECK(product_id IN ('academy','quote-workshop','drayage-workshop'));
