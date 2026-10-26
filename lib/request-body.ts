@@ -1,8 +1,13 @@
-export async function boundedText(request:Request,maxBytes=65536){
- const reader=request.body?.getReader();if(!reader)return '';
+export async function boundedBytes(request:Request,maxBytes=65536){
+ const reader=request.body?.getReader();if(!reader)return new Uint8Array(0);
  let size=0;const chunks:Uint8Array[]=[];
  while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>maxBytes){await reader.cancel();throw Error('Request is too large');}chunks.push(value);}
- const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.byteLength;}return new TextDecoder().decode(bytes);
+ const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.byteLength;}return bytes;
+}
+export async function boundedText(request:Request,maxBytes=65536){return new TextDecoder().decode(await boundedBytes(request,maxBytes));}
+export async function boundedFormData(request:Request,maxBytes:number){
+ const bytes=await boundedBytes(request,maxBytes);
+ return new Response(bytes,{headers:{'Content-Type':request.headers.get('content-type')||''}}).formData();
 }
 export async function boundedJson(request:Request,maxBytes=65536){return JSON.parse(await boundedText(request,maxBytes));}
 export function safeError(error:unknown){
