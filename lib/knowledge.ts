@@ -6,9 +6,9 @@ export async function getSources():Promise<KnowledgeSource[]>{if(cached&&Date.no
 import type {Member} from './access';
 import {listItems,saveItem} from './store';
 
-export async function knowledgeSettings(m:Member){return (await listItems({...m,id:'teaching-content'},'knowledge_settings'))[0]}
+export async function knowledgeSettings(m:Member){return (await listItems(m,'knowledge_settings','teaching-content'))[0]}
 export async function approvedSources(m:Member){const sources=await getSources();const settings=await knowledgeSettings(m);const approvals=(settings?.data.approvals||{}) as Record<string,boolean>;return sources.filter(s=>m.admin||(approvals[s.id]??s.approved))}
-export async function approveSource(m:Member,id:string,approved:boolean){const sources=await getSources();if(!m.admin||!sources.some(s=>s.id===id))throw Error('FORBIDDEN');const current=await knowledgeSettings(m);await saveItem({...m,id:'teaching-content'},'knowledge_settings',{approvals:{...(current?.data.approvals as object||{}),[id]:approved}},current?.id)}
+export async function approveSource(m:Member,id:string,approved:boolean){const sources=await getSources();if(!m.admin||!sources.some(s=>s.id===id))throw Error('FORBIDDEN');const current=await knowledgeSettings(m);await saveItem(m,'knowledge_settings',{approvals:{...(current?.data.approvals as object||{}),[id]:approved}},current?.id,'teaching-content')}
 const stop=new Set('the and a an to of in for i my me you your it is are have has how what do can would should with that this they them on as be already before after next just got get tell ask say their from about need does'.split(' '));
 function words(s:string){return s.toLowerCase().match(/[a-z0-9]+/g)?.filter(w=>w.length>2&&!stop.has(w)).map(w=>w.length>4&&w.endsWith('s')?w.slice(0,-1):w)||[]}
 export function retrieve(question:string,docs:KnowledgeSource[]){

@@ -1,3 +1,4 @@
+import {boundedText,boundedJson,safeError} from '@/lib/request-body';
 import {randomUUID} from 'node:crypto';
 import {NextResponse} from 'next/server';
 import {z} from 'zod';
@@ -13,7 +14,7 @@ const bodySchema=z.discriminatedUnion('action',[
   z.object({action:z.literal('logo'),logo:logoSchema}),
 ]);
 function failure(error:unknown) {
-  const message=error instanceof Error?error.message:'Unable to save your quote.';
+  const message=safeError(error);
   const status=message==='UNAUTHENTICATED'?401:message==='FORBIDDEN'||message==='ENROLLMENT_REQUIRED'?403:message==='QUOTE_NOT_FOUND'?404:400;
   return NextResponse.json({error:error instanceof z.ZodError?'Please check the quote fields, rates, and logo.':message==='QUOTE_NOT_FOUND'?'Quote not found.':status===401?'Sign in to use the calculator.':message},{status,headers});
 }
@@ -34,7 +35,7 @@ export async function POST(request:Request) {
     const member=await requireMember('any');
     if(!allowedQuoteModes(member).length)throw Error('FORBIDDEN');
     if(Number(request.headers.get('content-length')||0)>2_800_000)throw Error('Quote is too large. Use a smaller logo.');
-    const raw=await request.text();
+    const raw=await boundedText(request,2800000);
     if(Buffer.byteLength(raw)>2_800_000)throw Error('Quote is too large. Use a smaller logo.');
     const body=bodySchema.parse(JSON.parse(raw));
     if(body.action==='status'){await updateQuoteStatus(member,body.id,body.status);return NextResponse.json({ok:true},{headers});}

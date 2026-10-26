@@ -1,3 +1,4 @@
+import {boundedText,boundedJson,safeError} from '@/lib/request-body';
 import {NextResponse} from 'next/server';
 import {z} from 'zod';
 import {teachingInstructions, checkedAnswer} from '@/lib/gpt-prompt';
@@ -55,7 +56,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const raw = await request.text();
+    const raw = await boundedText(request,10000);
     if (Buffer.byteLength(raw) > 10000) throw Error('Please shorten your message.');
     const {message, conversationId: requestedId} = requestBody.parse(JSON.parse(raw));
     const existing = requestedId ? await loadGptConversation(member, requestedId) : null;
@@ -126,7 +127,7 @@ export async function POST(request: Request) {
   } catch (error) {
     if (reservation) await settle(reservation, 'failed').catch(() => {});
     return NextResponse.json(
-      {error: error instanceof Error && !(error instanceof z.ZodError) ? error.message : 'Please enter a message of 1–4,000 characters.'},
+      {error: safeError(error)},
       {status: 400},
     );
   }
